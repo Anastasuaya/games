@@ -1,0 +1,220 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #474747;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.hangmen {
+    margin: 20px auto;
+    width: 200px;
+    height: 250px;
+    position: relative;
+}
+
+/* Основа виселицы (постоянная часть) */
+.hangmen::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 100px;
+    height: 10px;
+    background: #333;
+    transform: translateX(-50%);
+}
+
+.hangmen::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 10px;
+    height: 220px;
+    background: #000;
+    transform: translateX(-50%);
+}
+
+/* Перекладина и верёвка (постоянные) */
+.hangmen .beam {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 80px;
+    height: 10px;
+    background: #333;
+    transform: translateX(-30%);
+}
+
+.hangmen .rope {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    width: 5px;
+    height: 30px;
+    background: #8B4513;
+    transform: translateX(30%);
+}
+
+/* Части тела - ПОЯВЛЯЮТСЯ ПОЭТАПНО */
+/* 1. Голова появляется на 1й ошибке */
+.hangmen[data-stage="1"] .head,
+.hangmen[data-stage="2"] .head,
+.hangmen[data-stage="3"] .head,
+.hangmen[data-stage="4"] .head,
+.hangmen[data-stage="5"] .head,
+.hangmen[data-stage="6"] .head {
+    display: block;
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    background: #fcd1b3;
+    border: 5px solid #333;
+    border-radius: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+/* 2. Тело появляется на 2й ошибке */
+.hangmen[data-stage="2"] .body,
+.hangmen[data-stage="3"] .body,
+.hangmen[data-stage="4"] .body,
+.hangmen[data-stage="5"] .body,
+.hangmen[data-stage="6"] .body {
+    display: block;
+    position: absolute;
+    top: 85px;
+    left: 50%;
+    width: 5px;
+    height: 80px;
+    background: #fcd1b3;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+/* 3. Левая рука на 3й ошибке */
+.hangmen[data-stage="3"] .left-arm,
+.hangmen[data-stage="4"] .left-arm,
+.hangmen[data-stage="5"] .left-arm,
+.hangmen[data-stage="6"] .left-arm {
+    display: block;
+    position: absolute;
+    top: 90px;
+    left: 50%;
+    width: 40px;
+    height: 5px;
+    background: #fcd1b3;
+    transform: translateX(-100%) rotate(-70deg);
+    transform-origin: right center;
+    z-index: 1;
+}
+
+/* 4. Правая рука на 4й ошибке */
+.hangmen[data-stage="4"] .right-arm,
+.hangmen[data-stage="5"] .right-arm,
+.hangmen[data-stage="6"] .right-arm {
+    display: block;
+    position: absolute;
+    top: 90px;
+    left: 50%;
+    width: 40px;
+    height: 5px;
+    background: #fcd1b3;
+    transform: translateX(0) rotate(70deg);
+    transform-origin: left center;
+    z-index: 1;
+}
+
+
+
+/* 5. Левая нога на 5й ошибке */
+.hangmen[data-stage="5"] .left-leg,
+.hangmen[data-stage="6"] .left-leg {
+    display: block;
+    position: absolute;
+    top: 160px;
+    left: 50%;
+    width: 40px;
+    height: 5px;
+    background: #fcd1b3;
+    transform: translateX(-100%) rotate(-70deg);
+    transform-origin: right center;
+    z-index: 1;
+}
+
+/* 6. Правая нога на 6й ошибке */
+.hangmen[data-stage="6"] .right-leg,
+.hangmen[data-stage="7"] .right-leg {
+    display: block;
+    position: absolute;
+    top: 160px;
+    left: 50%;
+    width: 40px;
+    height: 5px;
+    background: #fcd1b3;
+    transform: translateX(0) rotate(70deg); /* Исправлен угол на 20deg для симметрии */
+    transform-origin: left center;
+    z-index: 1;
+}
+
+/* Изначально все части тела скрыты */
+.hangmen .head,
+.hangmen .body,
+.hangmen .left-arm,
+.hangmen .right-arm,
+.hangmen .left-leg,
+.hangmen .right-leg {
+    display: none;
+}
+
+
+.word-display{
+    font-size: 2rem;
+    letter-spacing: 0.5rem;
+    margin: 1rem 0;
+}
+
+.letters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    /* промежутки между строками! */
+    margin: 1rem 0;
+}
+
+.letter-btn {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.letter-btn:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+}
+
+#restartBtn {
+    padding: 0.5rem 1rem;
+    background: #2196F3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

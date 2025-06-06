@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallows!!!</title>
+    <script type="module" src="src/components/gallows/gallows.ts"></script>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html">На главную</a>
+        <h1>Виселица</h1>
+        <div class="hangmen" id="hangmen" data-stage="0">
+                <div class="head"></div>
+                <div class="body"></div>
+                <div class="left-arm"></div>
+                <div class="right-arm"></div>
+                <div class="left-leg"></div>
+                <div class="right-leg"></div>
+        </div>
+        <div class="word-display" id="wordDisplay"></div>
+        <div class="status" id="status"></div>
+        <div class="letters" id="letters"></div>
+        <button id="restartBtn">New game</button>
+    </div>
+</body>
+</html>

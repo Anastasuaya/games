@@ -15,16 +15,16 @@ window.onload = function() {
 
 // Логика подтверждения
 confirmButton.onclick = function() {
-    console.log("Подтверждено!");
+    alert("Подтверждено!");
     modal.style.display = "none";
 }
 
 const cardArray = [
-    { name: 'twilight', img: './twilight.jpg' },
-    { name: 'starlight', img: './starlight.jpg' },
-    { name: 'applejack', img: './applejack.jpg' },
-    { name: 'fluttershy', img: './fluttershy.jpg' },
-    { name: 'rainbow', img: './rainbow.jpg' },
+    { name: 'twilight', img: './memoryCards/twilight.jpg' },
+    { name: 'starlight', img: './memoryCards/starlight.jpg' },
+    { name: 'applejack', img: './memoryCards/applejack.jpg' },
+    { name: 'fluttershy', img: './memoryCards/fluttershy.jpg' },
+    { name: 'rainbow', img: './memoryCards/rainbow.jpg' },
 ];
 let shuffledCards: Array<{ name: string, img: string }> = [];
 // Создание контейнера
@@ -43,7 +43,7 @@ function createBoard() {
         cardElement.addEventListener('click', flipCard);
 
         const frontFace = document.createElement('img');
-        frontFace.setAttribute('src', './shirt.jpg'); // Лицевая сторона (скрытая)
+        frontFace.setAttribute('src', './memoryCards/shirt.jpg'); // Лицевая сторона (скрытая)
 
         const backFace = document.createElement('img');
         backFace.setAttribute('src', card.img); // Обратная сторона (открытая)

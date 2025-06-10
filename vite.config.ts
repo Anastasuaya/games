@@ -12,6 +12,8 @@ export default {
                 memgen: resolve(__dirname, 'memGen.html'),
                 // @ts-ignore        
                 matrix: resolve(__dirname, 'matrix.html'),
+                                // @ts-ignore        
+                memory: resolve(__dirname, 'memory.html'),
             }
         }
     }

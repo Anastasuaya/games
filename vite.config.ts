@@ -1,3 +1,4 @@
+import { resolve } from 'path'
 export default {
     base: '/games/',
     build: {
